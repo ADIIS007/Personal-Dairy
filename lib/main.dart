@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:my_flutter_project/add_page.dart';
-import 'package:my_flutter_project/home_page.dart';
+import 'package:my_flutter_project/Pages/add_page.dart';
+import 'package:my_flutter_project/Pages/home_page.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:my_flutter_project/Entity/dairy.dart';
+import 'package:my_flutter_project/Pages/nav_page.dart';
 import 'package:my_flutter_project/Service/db.dart';
-import 'package:my_flutter_project/read_page.dart';
+import 'package:my_flutter_project/Pages/read_page.dart';
 
 void main() async {
   await Hive.initFlutter();
@@ -39,7 +40,7 @@ class MyApp extends StatelessWidget {
           }
         }
       },
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const BottomNavigation(),
     );
   }
 }

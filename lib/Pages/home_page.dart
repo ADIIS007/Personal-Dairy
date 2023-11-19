@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:my_flutter_project/Entity/dairy.dart';
 import 'package:my_flutter_project/Service/db.dart';
-import 'package:my_flutter_project/add_page.dart';
+import 'package:my_flutter_project/Pages/add_page.dart';
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
+  const MyHomePage({super.key});
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
@@ -42,7 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
+        title: const Text('Personal Dairy ❤️'),
       ),
       body: Center(
         //       style: Theme.of(context).textTheme.headlineMedium,
