@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:my_flutter_project/Pages/add_page.dart';
-import 'package:my_flutter_project/Pages/home_page.dart';
+import 'package:my_flutter_project/Pages/Diary/add_page.dart';
+import 'package:my_flutter_project/Pages/Diary/home_page.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:my_flutter_project/Entity/dairy.dart';
+import 'package:my_flutter_project/Pages/Diary/stats_page.dart';
 import 'package:my_flutter_project/Pages/nav_page.dart';
 import 'package:my_flutter_project/Service/db.dart';
-import 'package:my_flutter_project/Pages/read_page.dart';
+import 'package:my_flutter_project/Pages/Diary/read_page.dart';
 
 void main() async {
   await Hive.initFlutter();
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/addDairy': (context) => const AddDairy(),
+        '/statsDairy': (context) => Calendar(),
         '/readDairy': (context) {
           final dateStr = (ModalRoute.of(context)?.settings.arguments
               as Map<String, String>)['dateStr'];

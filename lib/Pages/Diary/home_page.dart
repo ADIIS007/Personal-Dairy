@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_flutter_project/Entity/dairy.dart';
 import 'package:my_flutter_project/Service/db.dart';
-import 'package:my_flutter_project/Pages/add_page.dart';
+import 'package:my_flutter_project/Pages/Diary/add_page.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -10,9 +10,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
-  void initState(){
+  void initState() {
     super.initState();
   }
 
@@ -30,7 +29,7 @@ class _MyHomePageState extends State<MyHomePage> {
         style: const TextStyle(fontSize: 18.0),
       ),
       trailing: const Icon(Icons.arrow_forward_ios_rounded),
-      onTap: ()=>_readDairy(date),
+      onTap: () => _readDairy(date),
     );
   }
 
@@ -40,13 +39,23 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text('Personal Dairy ❤️'),
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/statsDairy');
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('HEHEHE')),
+                );
+              },
+              icon: const Icon(Icons.timeline))
+        ],
       ),
       body: Center(
         //       style: Theme.of(context).textTheme.headlineMedium,
         child: FutureBuilder<List<DiaryEntry>>(
           future: _getAllEntries(),
-          builder: (context, snapshot){
-            switch(snapshot.connectionState){
+          builder: (context, snapshot) {
+            switch (snapshot.connectionState) {
               case ConnectionState.none:
                 return const Text(
                   'An Error Occurred',
@@ -55,23 +64,16 @@ class _MyHomePageState extends State<MyHomePage> {
               case ConnectionState.waiting:
                 return const CircularProgressIndicator();
               case ConnectionState.done:
-                if(snapshot.hasError){
+                if (snapshot.hasError) {
                   return Text(
                     'Error: ${snapshot.error}',
                   );
-                }
-                else{
-                  if(!snapshot.hasData){
-                    return const Text(
-                        'Make Some Memories now!'
-                    );
-                  }
-                  else if(snapshot.data!.isEmpty){
-                    return const Text(
-                        'Make Some Memories!!'
-                    );
-                  }
-                  else{
+                } else {
+                  if (!snapshot.hasData) {
+                    return const Text('Make Some Memories now!');
+                  } else if (snapshot.data!.isEmpty) {
+                    return const Text('Make Some Memories!!');
+                  } else {
                     List<DiaryEntry> data = snapshot.data!;
                     return ListView.builder(
                       itemCount: data.length,
@@ -94,17 +96,17 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  void _addDairy(){
+  void _addDairy() {
     Navigator.pushNamed(context, '/addDairy');
   }
 
   void _readDairy(String date) {
     DateTime currentDate = DateTime.now();
-    String dateStr = '${currentDate.year}-${currentDate.month}-${currentDate.day}';
-    if(date==dateStr){
+    String dateStr =
+        '${currentDate.year}-${currentDate.month}-${currentDate.day}';
+    if (date == dateStr) {
       _addDairy();
-    }
-    else{
+    } else {
       Navigator.pushNamed(context, '/readDairy', arguments: {'dateStr': date});
     }
   }

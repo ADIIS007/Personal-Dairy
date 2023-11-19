@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_flutter_project/Pages/home_page.dart';
+import 'package:my_flutter_project/Pages/Diary/home_page.dart';
 import 'package:my_flutter_project/Pages/image_page.dart';
 import 'package:my_flutter_project/Pages/settings_page.dart';
 

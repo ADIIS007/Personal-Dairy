@@ -8,6 +8,13 @@ class ImagePage extends StatefulWidget {
 }
 
 class _ImagePageState extends State<ImagePage> {
+
+  void _onAdd(){
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('TESTED')),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,6 +24,11 @@ class _ImagePageState extends State<ImagePage> {
       ),
       body: const Center(
         child: Text('This will hold your Imaged'),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _onAdd,
+        tooltip: 'Increment',
+        child: const Icon(Icons.add),
       ),
     );
   }
