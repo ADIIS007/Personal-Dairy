@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_flutter_project/Entity/dairy.dart';
 import 'package:my_flutter_project/Service/db.dart';
-import 'package:my_flutter_project/Pages/Diary/add_page.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -43,9 +42,6 @@ class _MyHomePageState extends State<MyHomePage> {
           IconButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/statsDairy');
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('HEHEHE')),
-                );
               },
               icon: const Icon(Icons.timeline))
         ],

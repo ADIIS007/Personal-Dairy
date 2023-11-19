@@ -55,4 +55,8 @@ class DairyService {
   List<DiaryEntry> getAllEntries() {
     return _diaryBox.values.toList();
   }
+
+  bool isTrue(String date){
+    return _diaryBox.get(date,defaultValue: null)==null?false:true;
+  }
 }
